@@ -17,4 +17,4 @@ jobs:
         brew audit ./Formula/macports.rb --online
 
     - name: Install Formula
-      run: brew install ./Formula/macports.rb --build-from-source
+      run: brew install ./Formula/macports.rb --build-from-source --with-dangerous-side-effects

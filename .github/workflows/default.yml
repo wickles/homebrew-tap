@@ -12,7 +12,9 @@ jobs:
         fetch-depth: 5
 
     - name: Audit Formula
-      run: brew audit Formula/macports.rb --online
+      run: |
+        brew update
+        brew audit ./Formula/macports.rb --online
 
     - name: Install Formula
-      run: brew install macports
+      run: brew install ./Formula/macports.rb --build-from-source

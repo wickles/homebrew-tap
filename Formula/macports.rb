@@ -15,7 +15,7 @@ class Macports < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "ed7437e47f43473d9a9a81652697d21373f11346401fc7a20d0a35357ca73ea8"
   end
 
-  option "with-dangerous-side-effects", "Enable advanced logging of all installer actions"
+  option "with-dangerous-side-effects", "Give consent to do something dangerous"
 
   def install
     if build.without? "dangerous-side-effects"

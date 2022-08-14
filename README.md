@@ -2,6 +2,7 @@
 
 [![BSD 2-Clause License](https://flat.badgen.net/badge/license/BSD%202-Clause/blue)](https://opensource.org/licenses/BSD-2-Clause)
 [![Latest Release](https://flat.badgen.net/github/release/idleberg/homebrew-macports)](https://github.com/idleberg/homebrew-macports/releases)
+[![CI](https://img.shields.io/github/workflow/status/idleberg/homebrew-macport/CI?style=flat-square)](https://github.com/idleberg/homebrew-macport/actions)
 
 Homebrew tap for [MacPorts](https://www.macports). Wait, what?! Well, it was *you* who googled it, so don't you look funny at me!
 

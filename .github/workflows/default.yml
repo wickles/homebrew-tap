@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+
+jobs:
+  default:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 10
+
+    - name: Install Cask
+      run: |
+        brew tap idleberg/macports
+        brew install --cask macports
+        brew remove macports
+
+    - name: Audit Formula
+      run: brew audit Formula/macports.rb --online
+
+    - name: Install Formula
+      run: brew install macports

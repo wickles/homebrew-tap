@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  default:
+  test-run:
     runs-on: macos-latest
 
     steps:
@@ -18,3 +18,6 @@ jobs:
 
     - name: Install Formula
       run: brew install ./Formula/macports.rb --build-from-source --with-dangerous-side-effects
+
+    - name: Print Version
+      run: port version

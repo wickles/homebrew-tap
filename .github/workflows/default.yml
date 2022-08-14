@@ -11,13 +11,8 @@ jobs:
       with:
         fetch-depth: 5
 
-    - name: Audit Formula
+    - name: Run tests
       run: |
         brew update
-        brew audit ./Formula/macports.rb --online
-
-    - name: Install Formula
-      run: brew install ./Formula/macports.rb --build-from-source --with-dangerous-side-effects
-
-    - name: Print Version
-      run: port version
+        brew audit --strict ./Formula/macports.rb
+        brew test ./Formula/macports.rb

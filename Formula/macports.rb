@@ -19,10 +19,12 @@ class Macports < Formula
 
   def install
     if build.without? "dangerous-side-effects"
-      puts ""
-      puts "This formula is highly experimental and is not recommended for general use. To install"
-      puts "it anyway, you need to pass the --with-dangerous-side-effects flag."
-      puts ""
+      puts <<~EOS
+
+        This formula is highly experimental and is not recommended for general use. To install
+        it anyway, you need to pass the --with-dangerous-side-effects flag.
+
+      EOS
 
       exit
     end

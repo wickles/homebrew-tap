@@ -9,13 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 10
-
-    - name: Install Cask
-      run: |
-        brew tap idleberg/macports
-        brew install --cask macports
-        brew remove macports
+        fetch-depth: 5
 
     - name: Audit Formula
       run: brew audit Formula/macports.rb --online

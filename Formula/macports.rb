@@ -16,6 +16,7 @@ class Macports < Formula
   end
 
   option "with-dangerous-side-effects", "Give consent to do something dangerous"
+  option "without-selfupdate", "Skips the self-update step after installation"
 
   def install
     if build.without? "dangerous-side-effects"
@@ -42,7 +43,7 @@ class Macports < Formula
   end
 
   def post_install
-    system "#{bin}/port", "selfupdate"
+    system "#{bin}/port", "selfupdate" if build.with? "selfupdate"
   end
 
   test do

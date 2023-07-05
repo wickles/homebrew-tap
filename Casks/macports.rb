@@ -4,7 +4,7 @@ cask "macports" do
   on_monterey do
     sha256 "9b9bc7bc552247f4d7dcb217eb5a3fc28f35e824d3769bb64e398f99d43777ea"
     url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-12-Monterey.pkg",
-    verified: "github.com/macports/macports-base/releases/download/"
+      verified: "github.com/macports/macports-base/releases/download/"
   end
 
   on_big_sur do
@@ -25,7 +25,7 @@ cask "macports" do
       verified: "github.com/macports/macports-base/releases/download/"
   end
 
-  on_sierra do
+  on_high_sierra do
     sha256 "5cc55a1d32dff1a2d20149d2ba5d377018ad4951828b1b869fe90ba4df400eca"
     url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-10.13-HighSierra.pkg",
       verified: "github.com/macports/macports-base/releases/download/"
@@ -38,8 +38,13 @@ cask "macports" do
   end
 
   name "MacPorts"
-  desc "A package management system for installating software on the macOS"
+  desc "Package manager for building open-source software on macOS"
   homepage "https://www.macports.org/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   on_monterey do
     depends_on macos: ">= :monterey"
@@ -68,7 +73,7 @@ cask "macports" do
 
   on_sierra do
     depends_on macos: ">= :sierra"
-    pkg "MacPorts-#{version}-10.2-Sierra.pkg"
+    pkg "MacPorts-#{version}-10.12-Sierra.pkg"
   end
 
   uninstall pkgutil: "org.macports.MacPorts"

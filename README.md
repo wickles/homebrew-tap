@@ -22,16 +22,6 @@ By default, it is recommended to install MacPorts as a cask
 $ brew install --cask macports
 ```
 
-### :radioactive: Danger Zone
-
-As an alternative, this repository also includes an *experimental* formula to install MacPorts without root privileges.
-
-```sh
-$ brew install macports
-```
-
-Installing MacPorts to `/usr/local` *might* conflict with your Homebrew setup and hence it is not recommended to install this formula – unless you know what you're doing.
-
 ## License
 
 This work is licensed under the [BSD 2-Clause License](LICENSE)

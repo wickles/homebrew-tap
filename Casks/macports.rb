@@ -28,8 +28,11 @@ cask "macports" do
   on_monterey do
     sha256 "21b2e8e94f04897bee530d871ef83becbb48231a7107ebb9cc0e8a9063881b31"
   end
-  on_ventura :or_newer do
+  on_ventura do
     sha256 "577512628a4b9237b3eccd0e18af28e06855f5d55bd71957c37a9c7c362de5f3"
+  end
+  on_sonoma do
+    sha256 "3f1335efed75d541d6eca3321a3b1af9178f35ddedf585cd3896e298a9aa2a6d"
   end
 
   url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg",
@@ -43,7 +46,7 @@ cask "macports" do
     strategy :github_latest
   end
 
-  depends_on macos: "<= :ventura"
+  depends_on macos: "<= :sonoma"
 
   pkg "MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg"
 

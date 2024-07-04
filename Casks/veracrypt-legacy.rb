@@ -8,6 +8,12 @@ cask "veracrypt-legacy" do
   desc "Disk encryption software focusing on security based on TrueCrypt"
   homepage "https://www.veracrypt.fr/en/Downloads_1.25.9.html"
 
+  livecheck do
+    skip "Legacy version"
+  end
+
+  deprecate! date: "2022-02-19", because: :discontinued
+
   conflicts_with cask: "veracrypt"
   depends_on cask: "macfuse"
 
@@ -20,8 +26,4 @@ cask "veracrypt-legacy" do
     "~/Library/Preferences/org.idrix.VeraCrypt.plist",
     "~/Library/Saved Application State/org.idrix.VeraCrypt.savedState",
   ]
-
-  caveats do
-    discontinued
-  end
 end

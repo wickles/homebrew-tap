@@ -1,10 +1,10 @@
-cask "macports" do
-  module Utils
-    def self.os_name
-      MacOS.version.to_sym.to_s.split("_").map(&:capitalize).join
-    end
+module Utils
+  def self.os_name
+    MacOS.version.to_sym.to_s.split("_").map(&:capitalize).join
   end
+end
 
+cask "macports" do
   version "2.9.3"
 
   on_el_capitan do
@@ -38,7 +38,7 @@ cask "macports" do
   url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg",
       verified: "github.com/macports/macports-base/"
   name "MacPorts"
-  desc "Package manager for building open-source software on macOS"
+  desc "Package manager for building open-source software on Darwin"
   homepage "https://www.macports.org/"
 
   livecheck do

@@ -1,8 +1,11 @@
 cask "betterbird" do
-  version "115.7.0-bb23"
-  sha256 "add96b7d47ec74ba83efa9cbe34ee57e799a9a8a8535bdf66318d4386dcf69a8"
+  arch arm: "-arm64"
 
-  url "https://www.betterbird.eu/downloads/MacDiskImage/betterbird-#{version}.en-US.mac.dmg"
+  version "115.12.0-bb29"
+  sha256 arm:   "ab3d8b5123680817d8ffcbef504c3bc809c61662abdb451b183aeeb8f804edd8",
+         intel: "bb9463ea9b08aa7e6cf346d0e374fea258d10ee3baf3274ef2b6be274a7bdb88"
+
+  url "https://www.betterbird.eu/downloads/MacDiskImage/betterbird-#{version}.en-US.mac#{arch}.dmg"
   name "Betterbird"
   desc "Fine-tuned version of Mozilla Thunderbird"
   homepage "https://www.betterbird.eu/"

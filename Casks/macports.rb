@@ -31,7 +31,11 @@ cask "macports" do
     strategy :github_latest
   end
 
-  depends_on macos: "<= :sonoma"
+  depends_on macos: [
+    :ventura,
+    :sonoma,
+    :sequoia,
+  ]
 
   on_macos do
     pkg "MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg"

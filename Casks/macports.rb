@@ -17,8 +17,11 @@ cask "macports" do
     sha256 "fbec79aecc648596330ab0798d89f850aa08af926f1496d3e95d9b1d11011bef"
   end
 
-  url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg",
-      verified: "github.com/macports/macports-base/"
+  on_macos do
+    url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg",
+        verified: "github.com/macports/macports-base/"
+  end
+
   name "MacPorts"
   desc "Package manager for building open-source software on Darwin"
   homepage "https://www.macports.org/"
@@ -30,7 +33,9 @@ cask "macports" do
 
   depends_on macos: "<= :sonoma"
 
-  pkg "MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg"
+  on_macos do
+    pkg "MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg"
+  end
 
   uninstall pkgutil: "org.macports.MacPorts"
 end

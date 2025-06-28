@@ -1,4 +1,8 @@
 module Utils
+  def self.os_version
+    MacOS.version
+  end
+
   def self.os_name
     MacOS.version.to_sym.to_s.split("_").map(&:capitalize).join
   end
@@ -17,11 +21,8 @@ cask "macports" do
     sha256 "fbec79aecc648596330ab0798d89f850aa08af926f1496d3e95d9b1d11011bef"
   end
 
-  on_macos do
-    url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg",
-        verified: "github.com/macports/macports-base/"
-  end
-
+  url "https://github.com/macports/macports-base/releases/download/v#{version}/MacPorts-#{version}-#{Utils.os_version}-#{Utils.os_name}.pkg",
+      verified: "github.com/macports/macports-base/"
   name "MacPorts"
   desc "Package manager for building open-source software on Darwin"
   homepage "https://www.macports.org/"
@@ -37,9 +38,7 @@ cask "macports" do
     :sequoia,
   ]
 
-  on_macos do
-    pkg "MacPorts-#{version}-#{MacOS.version}-#{Utils.os_name}.pkg"
-  end
+  pkg "MacPorts-#{version}-#{Utils.os_version}-#{Utils.os_name}.pkg"
 
   uninstall pkgutil: "org.macports.MacPorts"
 end

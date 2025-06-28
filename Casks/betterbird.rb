@@ -2,8 +2,10 @@ cask "betterbird" do
   arch arm: "-arm64"
 
   version "115.12.0-bb29"
-  sha256 arm:   "ab3d8b5123680817d8ffcbef504c3bc809c61662abdb451b183aeeb8f804edd8",
-         intel: "bb9463ea9b08aa7e6cf346d0e374fea258d10ee3baf3274ef2b6be274a7bdb88"
+  sha256 arm:          "ab3d8b5123680817d8ffcbef504c3bc809c61662abdb451b183aeeb8f804edd8",
+         intel:        "bb9463ea9b08aa7e6cf346d0e374fea258d10ee3baf3274ef2b6be274a7bdb88",
+         arm64_linux:  "0",
+         x86_64_linux: "0"
 
   url "https://www.betterbird.eu/downloads/MacDiskImage/betterbird-#{version}.en-US.mac#{arch}.dmg"
   name "Betterbird"

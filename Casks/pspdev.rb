@@ -2,8 +2,10 @@ cask "pspdev" do
   arch arm: "latest-arm64", intel: "13-x86_64"
 
   version "20250610"
-  sha256 arm:   "f06d997c5aad03cc094a2bbe1abbdd84f16dc0f1a1e46b1380adaca5f8414baf",
-         intel: "8077d5fa88e4689ca0281ba8751f4458e2a4cf9f81be14add990cb20728c5e28"
+  sha256 arm:          "f06d997c5aad03cc094a2bbe1abbdd84f16dc0f1a1e46b1380adaca5f8414baf",
+         intel:        "8077d5fa88e4689ca0281ba8751f4458e2a4cf9f81be14add990cb20728c5e28",
+         arm64_linux:  "0",
+         x86_64_linux: "0"
 
   url "https://github.com/pspdev/pspdev/releases/download/v#{version}/pspdev-macos-#{arch}.tar.gz",
       verified: "github.com/pspdev/pspdev/"

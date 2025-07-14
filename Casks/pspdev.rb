@@ -1,9 +1,9 @@
 cask "pspdev" do
   arch arm: "latest-arm64", intel: "13-x86_64"
 
-  version "20250610"
-  sha256 arm:          "f06d997c5aad03cc094a2bbe1abbdd84f16dc0f1a1e46b1380adaca5f8414baf",
-         intel:        "8077d5fa88e4689ca0281ba8751f4458e2a4cf9f81be14add990cb20728c5e28",
+  version "20250701"
+  sha256 arm:          "5385c879e3bb2ec4baf3c1227a825c7b22710cdcbdd838b0d13573f9e315a83e",
+         intel:        "539e8408b46ea5f9a054fe3b943377e9c911e4eb9840a56055173cc13163c1ba",
          arm64_linux:  "0",
          x86_64_linux: "0"
 

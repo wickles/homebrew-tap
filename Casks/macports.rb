@@ -9,16 +9,16 @@ module Utils
 end
 
 cask "macports" do
-  version "2.10.7"
+  version "2.11.0"
 
   on_ventura do
-    sha256 "76297f2540da91095c3c98bb6a8befc27fbb4fc69e1a289878ccb92598845371"
+    sha256 "40898eec50630540ae0c3abc0cb3b9d3b9d1d12428c51cf27629f9b082972e5a"
   end
   on_sonoma do
-    sha256 "6743774b8698f98033f40ba1c033015580ad58ab67de94b25ac8cb580a2339eb"
+    sha256 "809da9d96c2c166ee4d7312de4006b07c49d6a4e9b448d639e4bcb9cef73c6ea"
   end
   on_sequoia do
-    sha256 "fbec79aecc648596330ab0798d89f850aa08af926f1496d3e95d9b1d11011bef"
+    sha256 "3d6282321058cdab4d7214cf3b802ed1a47416f131be9087aa738e3b7874434a"
   end
 
   on_macos do

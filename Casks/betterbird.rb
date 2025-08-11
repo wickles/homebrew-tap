@@ -1,9 +1,9 @@
 cask "betterbird" do
   arch arm: "-arm64"
 
-  version "115.12.0-bb29"
-  sha256 arm:          "ab3d8b5123680817d8ffcbef504c3bc809c61662abdb451b183aeeb8f804edd8",
-         intel:        "bb9463ea9b08aa7e6cf346d0e374fea258d10ee3baf3274ef2b6be274a7bdb88",
+  version "128.13.0esr-bb31"
+  sha256 arm:          "063b5a8173c24fa72ae1a21e7898f0d999637508af537fb9c2c529db29257f6b",
+         intel:        "0ca5c0e573d761cb9aa1de29c40b3125030a5b6ba00ce214ef6c2190366bfc04",
          arm64_linux:  "0",
          x86_64_linux: "0"
 
@@ -14,7 +14,7 @@ cask "betterbird" do
 
   livecheck do
     url "https://www.betterbird.eu/downloads/get.php?os=mac&lang=en-US&version=release"
-    regex(/betterbird-(\d+(?:\.\d+)*-bb\d+)\.en-US\.mac\.dmg/i)
+    regex(/betterbird-([\d.]+[\w-]*)\.en-US\.mac\.dmg/i)
     strategy :header_match
   end
 

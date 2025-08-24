@@ -11,7 +11,8 @@ cask "root@5" do
     skip "Legacy version"
   end
 
-  conflicts_with formula: "root"
+  # deprecated homebrew functionality
+  # conflicts_with formula: "root"
 
   binary "root/bin/g2root"
   binary "root/bin/genmap"

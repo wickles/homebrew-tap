@@ -41,7 +41,6 @@ cask "pspdev" do
   binary "pspdev/bin/psp-fixup-imports"
   binary "pspdev/bin/psp-g++"
   binary "pspdev/bin/psp-gcc"
-  binary "pspdev/bin/psp-gcc-15.1.1"
   binary "pspdev/bin/psp-gcc-ar"
   binary "pspdev/bin/psp-gcc-nm"
   binary "pspdev/bin/psp-gcc-ranlib"

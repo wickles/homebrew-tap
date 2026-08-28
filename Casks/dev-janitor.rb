@@ -1,9 +1,9 @@
 cask "dev-janitor" do
   arch arm: "aarch64", intel: "x64"
 
-  version "2.3.5"
-  sha256 arm:   "65bb45571c55e3bec330ba1720c6d31b28174d9e58ec3fe0e6b2f9e152515429",
-         intel: "d2c3de0817b0ae660ec1dc6530a9765932f7f8a6337a0be12add1901b1cc6385"
+  version "2.5.0"
+  sha256 arm:   "a01b9585bb300db23a089fbf90ac24af9188e8be73d2c80c0f59d585db444fd6",
+         intel: "4408254895381e01d6892724d22560793e0e5892d8f6d037f0b452de928455d2"
 
   url "https://github.com/cocojojo5213/Dev-Janitor/releases/download/v#{version}/Dev.Janitor_#{version}_#{arch}.dmg"
   name "Dev Janitor"

@@ -21,23 +21,9 @@ cask "djview" do
 
   app "DjView.app"
 
-  postflight do
-    ohai "Releasing #{token} from quarantine"
-    system_command("/usr/bin/xattr",
-                   args: [
-                     "-dr",
-                     "com.apple.quarantine",
-                     "#{appdir}/DjView.app",
-                   ])
-  end
-
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.djvu.djview.sfl*",
     "~/Library/Preferences/org.djvu.DjView.plist",
     "~/Library/Saved Application State/org.djvu.DjView.savedState",
   ]
-
-  caveats <<~EOS
-    Warning: macOS's Gatekeeper has been disabled for this Cask
-  EOS
 end

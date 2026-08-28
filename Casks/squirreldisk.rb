@@ -13,6 +13,8 @@ cask "squirreldisk" do
     strategy :github_latest
   end
 
+  depends_on :macos
+
   app "SquirrelDisk.app"
 
   zap trash: [

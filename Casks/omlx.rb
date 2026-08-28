@@ -23,7 +23,7 @@ cask "omlx" do
     strategy :git
   end
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "oMLX.app"
 

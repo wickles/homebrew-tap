@@ -15,7 +15,7 @@ cask "veracrypt-legacy" do
   deprecate! date: "2022-02-19", because: :discontinued
 
   conflicts_with cask: "veracrypt"
-  depends_on cask: "macfuse"
+  depends_on :macos
 
   pkg "VeraCrypt_Installer.pkg"
 

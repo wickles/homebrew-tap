@@ -1,9 +1,9 @@
 cask "betterbird" do
   arch arm: "-arm64"
 
-  version "140.2.0esr-bb9"
-  sha256 arm:          "db7a8c867f671be43a7130ef1a43517237d6c3acea6567eaf32879680d973646",
-         intel:        "ae8d67545f9455591c8ddd5c921688a1832c36b5671e5b4a0f1b51f42194a0fe",
+  version "153.1.0esr-bb7-build2"
+  sha256 arm:          "ca7e8607fe945568f66a79d9408ef150d4d1da34530c4cc3a2d166ca660073e7",
+         intel:        "18dddf819ba3fdcdcc6c9f9e50240c4e56db2ca0c686edf29695fa8f1e355cf2",
          arm64_linux:  "0",
          x86_64_linux: "0"
 

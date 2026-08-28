@@ -2,10 +2,8 @@ cask "pspdev" do
   arch arm: "latest-arm64", intel: "13-x86_64"
 
   version "20250801"
-  sha256 arm:          "f437c78e5878a6eb03d60ecc1d4802d3c4c8b99c0438455684e42ce23d1fea34",
-         intel:        "50bee11487474aab2ecc300c9ee7412e62eedcccda255b5a96dea2e67f8775c5",
-         arm64_linux:  "0",
-         x86_64_linux: "0"
+  sha256 arm:   "f437c78e5878a6eb03d60ecc1d4802d3c4c8b99c0438455684e42ce23d1fea34",
+         intel: "50bee11487474aab2ecc300c9ee7412e62eedcccda255b5a96dea2e67f8775c5"
 
   url "https://github.com/pspdev/pspdev/releases/download/v#{version}/pspdev-macos-#{arch}.tar.gz",
       verified: "github.com/pspdev/pspdev/"
@@ -18,6 +16,8 @@ cask "pspdev" do
     strategy :github_latest
     regex(/^v?(\d+)$/i)
   end
+
+  depends_on :macos
 
   binary "pspdev/bin/bin2c"
   binary "pspdev/bin/bin2o"

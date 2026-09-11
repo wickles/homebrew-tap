@@ -5,8 +5,7 @@ cask "pspdev" do
   sha256 arm:   "f4f603a8f1bfded1b026679aef658ff6b0a53ecd787f182cdeae91413b5f1719",
          intel: "449e8140cc6ad9eede576c462a119a1a011933181cc54f579bf62ac703e15514"
 
-  url "https://github.com/pspdev/pspdev/releases/download/v#{version}/pspdev-macos-#{arch}.tar.gz",
-      verified: "github.com/pspdev/pspdev/"
+  url "https://github.com/pspdev/pspdev/releases/download/v#{version}/pspdev-macos-#{arch}.tar.gz"
   name "pspdev"
   desc "Complete development environment for PSP homebrew"
   homepage "https://pspdev.github.io/"

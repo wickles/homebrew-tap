@@ -2,8 +2,7 @@ cask "squirreldisk" do
   version "0.3.4"
   sha256 "45820b944d22c6190db622c214800e81496ee8f8b148557015a44e6e0f245b49"
 
-  url "https://github.com/adileo/squirreldisk/releases/download/v#{version}/SquirrelDisk_#{version}_x64.dmg",
-      verified: "github.com/adileo/squirreldisk/"
+  url "https://github.com/adileo/squirreldisk/releases/download/v#{version}/SquirrelDisk_#{version}_x64.dmg"
   name "SquirrelDisk"
   desc "Fast Disk Usage Analysis Tool - Built With Rust"
   homepage "https://squirreldisk.com/"

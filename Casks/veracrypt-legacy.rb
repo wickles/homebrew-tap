@@ -2,8 +2,7 @@ cask "veracrypt-legacy" do
   version "1.25.9"
   sha256 "8acfdcfca5b64218431b990d1018b0c54feb508207640e819397cdbe701ae1eb"
 
-  url "https://launchpad.net/veracrypt/trunk/#{version}/+download/VeraCrypt_#{version}.dmg",
-      verified: "launchpad.net/veracrypt/trunk/"
+  url "https://launchpad.net/veracrypt/trunk/#{version}/+download/VeraCrypt_#{version}.dmg"
   name "VeraCrypt"
   desc "Disk encryption software focusing on security based on TrueCrypt"
   homepage "https://www.veracrypt.fr/en/Downloads_1.25.9.html"

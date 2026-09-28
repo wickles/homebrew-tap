@@ -11,8 +11,9 @@ module Homebrew
       # Taps are named `homebrew-<tap>`: `Homebrew/homebrew-core`, `homebrew-ffmpeg/homebrew-ffmpeg`.
       TAP_PREFIX = "homebrew-"
       CODE_SEARCH_URL = "https://api.github.com/search/code"
-      # Repeated `path:` qualifiers are OR'd, and `filename:` matches a substring of the file name.
-      SEARCH_QUERY = "path:Formula/ path:Casks/ filename:"
+      # Repeated `path:` qualifiers are OR'd and `filename:` matches a substring of the file name.
+      # `extension:` keeps out files that are not formulae or casks, e.g. a tap's `README.md`.
+      SEARCH_QUERY = "path:Formula/ path:Casks/ extension:rb filename:"
       # `path:` matches anywhere in the path, so this filters out vendored and test copies.
       DIRECTORY_PREFIXES = %w[Formula/ Casks/].freeze
       RESULTS_PER_PAGE = 100
@@ -105,9 +106,6 @@ module Homebrew
 
         path = file["path"]
         return unless path.start_with?(*DIRECTORY_PREFIXES)
-        # `filename:` matches any file type, so a tap's `Casks/README.md` would otherwise come
-        # back as a cask named `README.md`.
-        return unless path.end_with?(".rb")
 
         Match.new(name: File.basename(path, ".rb"), tap_name:, path:)
       end

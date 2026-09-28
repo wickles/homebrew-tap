@@ -22,7 +22,6 @@ module Homebrew
         const :name, String
         const :tap_name, String
         const :path, String
-        const :rank, T::Array[Integer]
 
         sig { returns(String) }
         def kind = path.start_with?("Formula/") ? "Formula" : "Cask"
@@ -70,10 +69,10 @@ module Homebrew
 
       private
 
-      # The `Formula` and `Casks` files named like `query` in taps, best match first.
+      # The `Formula` and `Casks` files named like `query` in taps, in the order GitHub returns
+      # them, which puts the most prominent taps first.
       sig { params(query: String).returns(T::Array[Match]) }
       def matches(query)
-        needle = query.downcase
         matches = search_files(query).filter_map do |file|
           tap_name = file.dig("repository", "full_name")
           next if tap_name.nil?
@@ -82,11 +81,9 @@ module Homebrew
           path = file["path"]
           next unless path.start_with?(*DIRECTORY_PREFIXES)
 
-          name = File.basename(path, ".rb")
-          Match.new(name:, tap_name:, path:, rank: rank(name.downcase, needle))
+          Match.new(name: File.basename(path, ".rb"), tap_name:, path:)
         end
 
-        matches.sort_by! { |match| [*match.rank, match.name] }
         matches.first(MAX_RESULTS)
       end
 
@@ -96,21 +93,6 @@ module Homebrew
         url = "#{CODE_SEARCH_URL}?q=#{URI.encode_www_form_component(search)}" \
               "&per_page=#{RESULTS_PER_PAGE}"
         ::GitHub::API.open_rest(url)["items"] || []
-      end
-
-      # GitHub only returns names containing the query and orders them by best match already, so
-      # this only has to promote the name itself, and names it starts with, over the rest.
-      sig { params(name: String, query: String).returns(T::Array[Integer]) }
-      def rank(name, query)
-        category = if name == query
-          0
-        elsif name.start_with?(query)
-          1
-        else
-          2
-        end
-
-        [category, name.length]
       end
 
       sig { params(matches: T::Array[Match]).void }

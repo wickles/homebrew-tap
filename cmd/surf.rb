@@ -1,7 +1,6 @@
 # typed: strict
 # frozen_string_literal: true
 
-require "did_you_mean"
 require "json"
 require "uri"
 require "utils/github/api"
@@ -84,10 +83,7 @@ module Homebrew
           next unless path.start_with?(*DIRECTORY_PREFIXES)
 
           name = File.basename(path, ".rb")
-          rank = rank(name.downcase, needle)
-          next if rank.nil?
-
-          Match.new(name:, tap_name:, path:, rank:)
+          Match.new(name:, tap_name:, path:, rank: rank(name.downcase, needle))
         end
 
         matches.sort_by! { |match| [*match.rank, match.name] }
@@ -102,18 +98,19 @@ module Homebrew
         ::GitHub::API.open_rest(url)["items"] || []
       end
 
-      # GitHub orders the results by best match already, so only keep the ones that really do
-      # match: an exact name, one it starts with, one containing it, or one a typo away.
-      sig { params(name: String, query: String).returns(T.nilable(T::Array[Integer])) }
+      # GitHub only returns names containing the query and orders them by best match already, so
+      # this only has to promote the name itself, and names it starts with, over the rest.
+      sig { params(name: String, query: String).returns(T::Array[Integer]) }
       def rank(name, query)
-        return [0, 0, name.length] if name == query
-        return [1, 0, name.length] if name.start_with?(query)
-        return [2, 0, name.length] if name.include?(query)
+        category = if name == query
+          0
+        elsif name.start_with?(query)
+          1
+        else
+          2
+        end
 
-        distance = DidYouMean::Levenshtein.distance(name, query)
-        return if distance > [query.length / 3, 1].max
-
-        [3, distance, name.length]
+        [category, name.length]
       end
 
       sig { params(matches: T::Array[Match]).void }

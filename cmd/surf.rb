@@ -105,6 +105,9 @@ module Homebrew
 
         path = file["path"]
         return unless path.start_with?(*DIRECTORY_PREFIXES)
+        # `filename:` matches any file type, so a tap's `Casks/README.md` would otherwise come
+        # back as a cask named `README.md`.
+        return unless path.end_with?(".rb")
 
         Match.new(name: File.basename(path, ".rb"), tap_name:, path:)
       end

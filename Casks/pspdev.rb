@@ -1,5 +1,5 @@
 cask "pspdev" do
-  arch arm: "latest-arm64", intel: "15-x86_64"
+  arch arm: "latest-arm64", intel: "15-intel-x86_64"
 
   version "20260801"
   sha256 arm:   "f4f603a8f1bfded1b026679aef658ff6b0a53ecd787f182cdeae91413b5f1719",

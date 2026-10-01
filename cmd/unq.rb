@@ -14,8 +14,7 @@ module Homebrew
 
       cmd_args do
         description <<~EOS
-          Remove the `com.apple.quarantine` extended attribute from the apps and app suites
-          installed by <cask>.
+          Remove the `com.apple.quarantine` extended attribute from the apps and suites installed by <cask>.
 
           macOS otherwise prompts, or blocks outright, on the first launch of a quarantined app.
           This is for casks whose downloads are known to be unsigned, so the prompt cannot be
@@ -41,48 +40,48 @@ module Homebrew
           return
         end
 
-        if (bundles = bundle_targets(cask)).empty?
-          opoo "#{cask} does not install any apps or app suites."
+        if (targets = artifact_targets(cask)).empty?
+          opoo "#{cask} does not install any apps or suites."
           return
         end
 
-        bundles.each { |bundle| unquarantine_app(bundle) }
+        targets.each { |target| unquarantine_target(target) }
       end
 
       # An `app` or `suite` artifact is moved to its target (e.g. `/Applications`) at install time,
       # so the copy in the Caskroom is not the bundle Gatekeeper evaluates. Apps that came out of a
       # suite are moved in beside it rather than into it, so both kinds are listed separately.
       sig { params(cask: Cask::Cask).returns(T::Array[Pathname]) }
-      def bundle_targets(cask)
+      def artifact_targets(cask)
         suites = cask.artifacts.grep(Cask::Artifact::Suite).map(&:target).select(&:directory?)
         apps = cask.artifacts.grep(Cask::Artifact::App).map(&:target).select(&:directory?)
         (suites + apps).uniq.sort
       end
 
-      sig { params(app: Pathname).void }
-      def unquarantine_app(app)
-        unless Cask::Quarantine.detect(app)
-          puts "#{app} was not quarantined."
+      sig { params(target: Pathname).void }
+      def unquarantine_target(target)
+        unless Cask::Quarantine.detect(target)
+          puts "#{target} was not quarantined."
           return
         end
 
         if args.dry_run?
-          puts "#{app} would be unquarantined."
+          puts "#{target} would be unquarantined."
           return
         end
 
         # Recurse: Gatekeeper evaluates the executable it is about to launch, not just the
         # bundle containing it, and quarantine is recorded on every extracted file.
         result = system_command("/usr/bin/xattr",
-                                args:         ["-dr", Cask::Quarantine::QUARANTINE_ATTRIBUTE, app],
+                                args:         ["-dr", Cask::Quarantine::QUARANTINE_ATTRIBUTE, target],
                                 print_stderr: false)
         if result.success?
-          puts "#{app} is now unquarantined."
+          puts "#{target} is now unquarantined."
         else
-          onoe "Failed to unquarantine #{app}: #{result.stderr.lines.first&.strip}"
+          onoe "Failed to unquarantine #{target}: #{result.stderr.lines.first&.strip}"
         end
       rescue ErrorDuringExecution => e
-        onoe "Failed to unquarantine #{app}: #{e}"
+        onoe "Failed to unquarantine #{target}: #{e}"
       end
     end
   end

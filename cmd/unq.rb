@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "cask/artifact/app"
+require "cask/artifact/suite"
 require "cask/cask"
 require "cask/quarantine"
 require "system_command"
@@ -13,14 +14,15 @@ module Homebrew
 
       cmd_args do
         description <<~EOS
-          Remove the `com.apple.quarantine` extended attribute from the apps installed by <cask>.
+          Remove the `com.apple.quarantine` extended attribute from the apps and app suites
+          installed by <cask>.
 
           macOS otherwise prompts, or blocks outright, on the first launch of a quarantined app.
           This is for casks whose downloads are known to be unsigned, so the prompt cannot be
           satisfied by a valid signature.
         EOS
         switch "--dry-run",
-               description: "Print the apps that would be unquarantined without changing anything."
+               description: "Print the apps and suites that would be unquarantined without changing anything."
         named_args :cask, min: 1
       end
 
@@ -39,20 +41,22 @@ module Homebrew
           return
         end
 
-        if (apps = app_targets(cask)).empty?
-          opoo "#{cask} does not install any apps."
+        if (bundles = bundle_targets(cask)).empty?
+          opoo "#{cask} does not install any apps or app suites."
           return
         end
 
-        apps.each { |app| unquarantine_app(app) }
+        bundles.each { |bundle| unquarantine_app(bundle) }
       end
 
-      # An `app` artifact is moved to its target (e.g. `/Applications`) at install time, so the
-      # copy in the Caskroom is not the bundle Gatekeeper evaluates.
+      # An `app` or `suite` artifact is moved to its target (e.g. `/Applications`) at install time,
+      # so the copy in the Caskroom is not the bundle Gatekeeper evaluates. Apps that came out of a
+      # suite are moved in beside it rather than into it, so both kinds are listed separately.
       sig { params(cask: Cask::Cask).returns(T::Array[Pathname]) }
-      def app_targets(cask)
-        app_artifacts = cask.artifacts.grep(Cask::Artifact::App)
-        app_artifacts.map(&:target).select(&:directory?).uniq.sort
+      def bundle_targets(cask)
+        suites = cask.artifacts.grep(Cask::Artifact::Suite).map(&:target).select(&:directory?)
+        apps = cask.artifacts.grep(Cask::Artifact::App).map(&:target).select(&:directory?)
+        (suites + apps).uniq.sort
       end
 
       sig { params(app: Pathname).void }
